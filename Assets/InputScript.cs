@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class InputScript : MonoBehaviour {
 
@@ -8,8 +9,10 @@ public class InputScript : MonoBehaviour {
 	int counter;
 	AudioSource audio;
 	bool success;
+	public Text compressionCounter;
 	public int marginOfError = 3;
 	public int beatsPerSecond;
+
 	// Use this for initialization
 	void Start () {
 		theAnimator = GetComponent<Animator>();
@@ -35,9 +38,10 @@ public class InputScript : MonoBehaviour {
 			}
 			else {
 				compressionsDone = 0;
-				Debug.Log("bad timing");
+				Debug.Log("too late!");
 			}
 			success = false;
+			compressionCounter.text = compressionsDone > 9 ? compressionsDone.ToString() : " " + compressionsDone.ToString();
 		}
 		else {
 			if(Input.GetKeyDown(KeyCode.Space)){ 
@@ -45,6 +49,9 @@ public class InputScript : MonoBehaviour {
 				if(counter > beatsPerSecond - marginOfError) {
 					Debug.Log("nice");
 					success = true;
+				}
+				else {
+					Debug.Log("too early");
 				}
 			}
 		}

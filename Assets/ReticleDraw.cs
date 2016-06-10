@@ -18,7 +18,7 @@ public class ReticleDraw : MonoBehaviour {
 		Ray ray = new Ray(transform.position, transform.forward);
 
 		if(Physics.Raycast(ray, out hit, rayLength)){
-			if(hit.collider.gameObject.tag == "torso") {
+			if(hit.collider.gameObject.tag == "torso"){// || hit.collider.gameObject.tag == "heart") {
 				compressionReticle.transform.position = hit.point;
 			}
 			else {

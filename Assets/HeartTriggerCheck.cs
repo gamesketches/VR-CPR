@@ -1,0 +1,26 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class HeartTriggerCheck : MonoBehaviour {
+
+	public bool CorrectCompressionPoint;
+	// Use this for initialization
+	void Start () {
+		CorrectCompressionPoint = false;
+	}
+
+	void OnTriggerEnter(Collider other) {
+		if(other.gameObject.tag == "reticle")
+		{
+			Debug.Log("it's on");
+			CorrectCompressionPoint = true;
+		}
+	}
+
+	void OnTriggerExit(Collider other) {
+		if(other.gameObject.tag == "reticle") {
+			CorrectCompressionPoint = false;
+		}
+	}
+
+}

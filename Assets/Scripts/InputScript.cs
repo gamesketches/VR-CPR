@@ -12,6 +12,7 @@ public class InputScript : MonoBehaviour {
 	public Text compressionCounter;
 	public int marginOfError = 3;
 	public int beatsPerSecond;
+	public bool started;
 
 	// Use this for initialization
 	void Start () {
@@ -20,10 +21,12 @@ public class InputScript : MonoBehaviour {
 		compressionsDone = 0;
 		counter = 0;
 		success = false;
+		started = false;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+		if(!started) return;
 		counter++;
 		if(counter == beatsPerSecond) {
 			audio.Play();

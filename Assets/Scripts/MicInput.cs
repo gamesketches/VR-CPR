@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MicTest : MonoBehaviour {
+public class MicInput : MonoBehaviour {
 
 	public static float MicLoudness;
 
@@ -44,8 +44,7 @@ public class MicTest : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		MicLoudness = LevelMax();
-		Debug.Log(MicLoudness);
+		MicLoudness = LevelMax() * 100;
 	}
 
 	void OnApplicationFocus(bool focus) {

@@ -34,13 +34,13 @@ public class Director : MonoBehaviour {
 	}
 
 	void stage0() {
-		if(micInput.MicLoudness) {
+		if(micInput.MicLoudness > 1) {
 			nextStage();
 		}
 	}
 
 	void stage1() {
-		if(micInput.MicLoudness) {
+		if(micInput.MicLoudness > 1) {
 			nextStage();
 		}
 	}
@@ -52,7 +52,7 @@ public class Director : MonoBehaviour {
 	}
 
 	void stage3() {
-		if(currentTarget == "mouthTrigger" && Input.GetAxis("Jump")) {
+		if(currentTarget == "mouthTrigger" && Input.GetAxis("Jump") != 0) {
 			nextStage();
 		}
 	}

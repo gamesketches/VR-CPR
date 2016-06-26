@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HeartTriggerCheck : MonoBehaviour {
+public class ReticleTriggerCheck : MonoBehaviour {
 
 	public bool CorrectCompressionPoint;
 	// Use this for initialization

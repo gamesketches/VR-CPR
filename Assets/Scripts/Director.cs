@@ -25,6 +25,11 @@ public class Director : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Ray ray = new Ray(transform.position, transform.forward);
+		RaycastHit hit;
+		if(Physics.Raycast(ray, out hit, 100f)) {
+			currentTarget = hit.collider.gameObject.name;
+		}
 		stages[stage]();
 	}
 
@@ -60,13 +65,16 @@ public class Director : MonoBehaviour {
 	}
 
 	void stage2() {
-		if(currentTarget == "mouthTrigger"){
+		if(currentTarget == "MouthTrigger"){
 			nextStage();
+		}
+		else {
+			Debug.Log(currentTarget);
 		}
 	}
 
 	void stage3() {
-		if(currentTarget == "mouthTrigger" && Input.GetAxis("Jump") != 0) {
+		if(currentTarget == "MouthTrigger" && Input.GetAxis("LeftStickX") < 0 && Input.GetAxis("RightStickX") > 0) {
 			nextStage();
 		}
 	}

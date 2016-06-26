@@ -10,6 +10,7 @@ public class Director : MonoBehaviour {
 	private MicInput micInput;
 	delegate void currentStageFunction();
 	currentStageFunction[] stages;
+	bool playerHasSpoken;
 	// Use this for initialization
 	void Start () {
 		micInput = GetComponent<MicInput>();
@@ -29,18 +30,31 @@ public class Director : MonoBehaviour {
 
 	void nextStage() {
 		stage++;
+		Debug.Log("Moving to stage " + stage.ToString());
 		audioPlayer.clip = instructions[stage];
 		audioPlayer.Play();
+		playerHasSpoken = false;
 	}
 
 	void stage0() {
 		if(micInput.MicLoudness > 1) {
+			playerHasSpoken = true;
+		}
+		if(playerHasSpoken && micInput.MicLoudness < 0.5f) {
 			nextStage();
 		}
 	}
 
 	void stage1() {
-		if(micInput.MicLoudness > 1) {
+		Ray ray = new Ray(transform.position, transform.forward);
+		RaycastHit hit;
+		if(Physics.Raycast(ray, out hit, 100f)) {
+			if(hit.collider.tag == "Bystander" && micInput.MicLoudness > 1) {
+				playerHasSpoken = true;
+				hit.collider.gameObject.GetComponent<RunAway>().StartRunning();
+			}
+		}
+		if(playerHasSpoken && micInput.MicLoudness < 0.5f) {
 			nextStage();
 		}
 	}

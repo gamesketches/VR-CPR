@@ -22,7 +22,6 @@ public class ReticleDraw : MonoBehaviour {
 				compressionReticle.transform.position = hit.point;
 			}
 			else {
-			Debug.Log(hit.collider.gameObject.tag);
 				compressionReticle.transform.position = new Vector3(100, 100, 100);
 			}
 		}

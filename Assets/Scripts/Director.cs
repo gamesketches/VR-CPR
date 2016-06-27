@@ -6,6 +6,7 @@ public class Director : MonoBehaviour {
 	private int stage;
 	private AudioClip[] instructions;
 	AudioSource audioPlayer;
+	InputScript compressionGame;
 	public string currentTarget;
 	private MicInput micInput;
 	delegate void currentStageFunction();
@@ -82,16 +83,26 @@ public class Director : MonoBehaviour {
 		if(currentTarget == "heartTrigger") {
 			nextStage();
 
-			GameObject.FindGameObjectWithTag("patient").GetComponent<InputScript>().started = true;
+			compressionGame = GameObject.FindGameObjectWithTag("patient").GetComponent<InputScript>();
+			compressionGame.started = true;
 		}
 	}
 
 	void stage5() {
-		//if metronome.compressions > 30, next stage
+		if(int.Parse(compressionGame.compressionCounter.text) >= 30) {
+			nextStage();
+			compressionGame.reset();
+		}
 	}
 
 	void stage6() {
-		// repeat last stage
+		if(currentTarget == "heartTrigger" && !audioPlayer.isPlaying) {
+			compressionGame.started = true;
+		}
+		if(int.Parse(compressionGame.compressionCounter.text) >= 30) {
+			nextStage();
+			compressionGame.reset();
+		}
 	}
 
 	void stage7() {

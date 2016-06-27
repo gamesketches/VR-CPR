@@ -61,4 +61,11 @@ public class InputScript : MonoBehaviour {
 			}
 		}
 	}
+
+	public void reset() {
+		compressionsDone = 0;
+		counter = 0;
+		success = false;
+		started = false;
+	}
 }

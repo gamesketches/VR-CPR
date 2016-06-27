@@ -12,7 +12,6 @@ public class ReticleTriggerCheck : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if(other.gameObject.tag == "reticle")
 		{
-			Debug.Log("it's on");
 			CorrectCompressionPoint = true;
 		}
 	}

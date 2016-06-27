@@ -8,6 +8,7 @@ public class InputScript : MonoBehaviour {
 	private int compressionsDone;
 	int counter;
 	AudioSource audio;
+	AudioSource successSound;
 	bool success;
 	public Text compressionCounter;
 	public int marginOfError = 3;
@@ -18,6 +19,7 @@ public class InputScript : MonoBehaviour {
 	void Start () {
 		theAnimator = GetComponent<Animator>();
 		audio = GetComponent<AudioSource>();
+		successSound = GetComponents<AudioSource>()[1];
 		compressionsDone = 0;
 		counter = 0;
 		success = false;
@@ -47,10 +49,10 @@ public class InputScript : MonoBehaviour {
 			compressionCounter.text = compressionsDone > 9 ? compressionsDone.ToString() : " " + compressionsDone.ToString();
 		}
 		else {
-			if(Input.GetKeyDown(KeyCode.Space)){ 
+			if(Input.GetAxis("LeftStickY") > 0 && Input.GetAxis("RightStickY") > 0){ 
 				theAnimator.SetTrigger("Compression");
 				if(counter > beatsPerSecond - marginOfError) {
-					Debug.Log("nice");
+					successSound.Play();
 					success = true;
 				}
 				else {

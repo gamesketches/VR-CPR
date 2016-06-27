@@ -4,9 +4,11 @@ using System.Collections;
 public class RunAway : MonoBehaviour {
 
 	public bool male;
+	private bool started;
 	float runAwayTime = 30f;
 	// Use this for initialization
 	void Start () {
+		started = false;
 	
 	}
 	
@@ -16,10 +18,12 @@ public class RunAway : MonoBehaviour {
 	}
 
 	public void StartRunning() {
-		transform.Rotate(new Vector3(0, 180, 0));
-		GetComponent<Animator>().SetBool("Male", male);
-		GetComponent<Animator>().SetTrigger("omw");
-		StartCoroutine(RanSoFarAway());
+		if(!started) {
+			transform.Rotate(new Vector3(0, 180, 0));
+			GetComponent<Animator>().SetBool("Male", male);
+			GetComponent<Animator>().SetTrigger("omw");
+			StartCoroutine(RanSoFarAway());
+		}
 	}
 
 	IEnumerator RanSoFarAway() {

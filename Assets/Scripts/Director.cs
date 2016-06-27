@@ -81,7 +81,8 @@ public class Director : MonoBehaviour {
 	void stage4() {
 		if(currentTarget == "heartTrigger") {
 			nextStage();
-			// Begin metronome
+
+			GameObject.FindGameObjectWithTag("patient").GetComponent<InputScript>().started = true;
 		}
 	}
 
